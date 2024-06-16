@@ -1,0 +1,1 @@
+# mongodb-atlas-deployment-kubernetes-operator-argocd
