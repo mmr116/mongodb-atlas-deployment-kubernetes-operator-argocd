@@ -1,0 +1,16 @@
+apiVersion: atlas.mongodb.com/v1
+kind: AtlasDatabaseUser
+metadata:
+  name: project1100-app001-database-user
+  namespace: project1100-app001-mongodb-atlas-ns
+  annotations:
+    argocd.argoproj.io/sync-wave: "6"
+spec:
+  roles:
+    - roleName: "readWriteAnyDatabase"
+      databaseName: "admin"
+  projectRef:
+    name: project1100-app001
+  username: adminuser
+  passwordSecretRef:
+    name: mongodb-atlas-secret-for-database-user
