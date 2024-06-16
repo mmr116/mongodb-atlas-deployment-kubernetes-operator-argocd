@@ -1,0 +1,32 @@
+apiVersion: atlas.mongodb.com/v1
+kind: AtlasProject
+metadata:
+  name: project1100-app001
+  namespace: project1100-app001-mongodb-atlas-ns
+  annotations:
+    argocd.argoproj.io/sync-wave: "5"
+spec:
+  name: project1100-app001
+  connectionSecretRef:
+    name: mongodb-atlas-secret-for-api-key
+  auditing:
+    enabled: true
+  maintenanceWindow:
+    dayOfWeek: 7
+    hourOfDay: 2
+    autoDefer: false
+  encryptionAtRest:
+    azureKeyVault:
+      azureEnvironment: "AZURE"
+      clientID: "Your Azure Service Principal Client ID"
+      enabled: true
+      keyIdentifier: "Your Azure Key Vault Key Identifier"
+      keyVaultName: "Your Azure Key Vault Name"
+      resourceGroupName: "Your Azure Key Vault Resource Group"
+      secret: "Your Service Principal Client Secret"
+      subscriptionID: 'Your Azure Subscription ID'
+      tenantID: "Your Azure Subscription Tenant ID"
+    googleCloudKms:
+      enabled: true
+      keyVersionResourceID: "Your GCP KMS Keyring Key Version ID"
+      serviceAccountKey: "{\"type\": \"service_account\",\"project_id\": \"your GCP project ID\",\"private_key_id\": \"Service Account Private Key ID\",\"private_key\": \"-----BEGIN PRIVATE KEY-----\\nMI\\nP"ABBREVIATED FOR SECURITY"Nk/kDrrrrrfghjz4gDlSF/Dyt1WO/I=\\n-----END PRIVATE KEY-----\\n\", \"client_email\": \"service account email\",\"client_id\": \"Client ID\",\"auth_uri\": \"AUTH URI\",\"token_uri\": \"TOKEN URI\",\"TOKEN URI\": \"https://www.googleapis.com/oauth2/v1/certs\",\"client_x509_cert_url\":\"CERT URI\"}"
